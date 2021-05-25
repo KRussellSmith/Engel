@@ -1,0 +1,20 @@
+let Vector = (stat) -> match stat
+{
+	'new' => (x, y) -> (prop) -> match prop
+	{
+		'get' => (field) -> match field
+		{
+			'x' => x
+			'y' => y
+		}
+		else 0
+	}
+	else 0
+	'add' => (a, b) -> Vector('new')(a('get')('x') + b('get')('x'), a('get')('y') + b('get')('y'))
+}
+else 0
+let pos = Vector('new')(24, 57), vel = Vector('new')(85, 36)
+print('pos = {#{pos('get')('x')}, #{pos('get')('y')}}')
+print('vel = {#{vel('get')('x')}, #{vel('get')('y')}}')
+let add = Vector('add')(pos, vel)
+print('pos + vel = {#{add('get')('x')}, #{add('get')('y')}}')
